@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @font-face {
+        font-family: "Visby Regular";
+        src: url("./central/fonts/visby-cdnfonts/VisbyBold.otf") format("woff2"),
+          url("./central/fonts/Visby-Round-Font/Visby-Round-www.Dfonts.org/Webfont/VisbyRoundCF-Bold.woff")
+            format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      * {
+        list-style: none;
+        outline: none;
+        padding: 0;
+        margin: 0;
+        font-family: "Open Sans", sans-serif;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Visby Regular", Arial, sans-serif; /* Fallback fonts included */
+        font-style: normal;
+        font-weight: normal;
+      }
+      .mainBoard {
+        background-color: #f4f6f9;
+        margin-bottom: 2rem;
+      }
+
+      .mainBoard .menubar {
+        background-color: #1c797e;
+        padding: 1rem;
+      }
+
+      .mainBoard header {
+        background-color: #1c797e;
+        display: flex;
+        justify-content: space-between;
+        z-index: 10;
+        position: relative;
+        padding-bottom: 2rem;
+      }
+
+      .mainBoard nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 50%;
+        padding: 2rem 1rem 1rem;
+      }
+      .iconsRed {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 40%;
+      }
+      .headButton {
+        background-color: white;
+        border: none;
+        border-radius: 2rem;
+        cursor: pointer;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+      }
+      .headButton {
+        animation: slideInFromRight 1s ease-out;
+        animation-delay: 0.3s;
+      }
+      .HeadSubBtn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .countryDropdown {
+        background-color: transparent;
+        border: none;
+        padding: 5px 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .countryDropdown option {
+        padding: 5px;
+        display: flex;
+        align-items: center;
+      }
+
+      .flagImg i {
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      .profile-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .profile-picture {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ddd;
+        background-size: cover;
+        background-position: center;
+      }
+      .stripe-button-el span {
+        display: block;
+        position: relative;
+        padding: 0 12px;
+        height: 30px;
+        line-height: 30px;
+        background: #1c797e;
+        background-image: #1c797e;
+      }
+      .profile-name {
+        font-size: 18px;
+        color: #ffffff;
+      }
+      .infoIcon,
+      .notificon {
+        background-color: white;
+        border-radius: 50%;
+        padding: 10px;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        margin: 0 10px;
+      }
+
+      .infoIcon i,
+      .notificon i {
+        font-size: 20px;
+        color: #1c797e;
+      }
+      .notification-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        font-size: 12px;
+        padding: 5px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+      }
+      .profile-picture-input {
+        display: none;
+      }
+      @keyframes slideInFromTop {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+      .HeadSubBtn {
+        animation: slideInFromTop 1.5s ease-out;
+        animation-delay: 0.7s;
+      }
+      .infoIcon,
+      .notificon {
+        animation: slideInFromBottom 1s ease-out;
+        animation-delay: 0.3s;
+      }
+      .profile-container {
+        animation: slideInFromLeft 1s ease-out;
+        animation-delay: 0.3s;
+      }
+      @media (max-width: 768px) {
+        .mainBoard header {
+          flex-direction: column;
+          width: 100%;
+          justify-content: space-between;
+          position: relative;
+          padding-bottom: 2rem;
+        }
+        .mainBoard nav {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          gap: 1rem;
+        }
+        .iconsRed {
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          width: 100%;
+        }
+        .headButton {
+          width: 100%;
+          justify-content: center;
+        }
+
+      }
+
+      @media (max-width: 480px) {
+        .profile-name {
+          font-size: 16px;
+        }
+
+        .profile-picture {
+          width: 25px;
+          height: 25px;
+        }
+
+        .infoIcon i,
+        .notificon i {
+          font-size: 16px;
+        }
+
+        .notification-count {
+          font-size: 10px;
+          width: 16px;
+          height: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mainBoard">
+      <header>
+        <div></div>
+        <nav>
+          <button class="headButton">
+            <div class="HeadSubBtn">
+              <div class="flagImg">
+                <i class="fas fa-flag-usa"></i>
+              </div>
+              <select class="countryDropdown">
+                <option value="en" class="flagOption">English</option>
+                <option value="es" class="flagOption">Español</option>
+                <option value="fr" class="flagOption">Français</option>
+                <option value="de" class="flagOption">Deutsch</option>
+                <option value="it" class="flagOption">Italiano</option>
+              </select>
+            </div>
+          </button>
+          <div class="iconsRed">
+            <div class="infoIcon">
+              <i class="fa-solid fa-info"></i>
+              <span class="notification-count">3</span>
+            </div>
+            <div class="notificon">
+              <i class="fa-regular fa-bell"></i>
+              <span class="notification-count">5</span>
+            </div>
+            <div class="profile-container">
+              <div
+                class="profile-picture"
+                id="profilePicture"
+                style="background-image: url('./default-profile.png')"
+              ></div>
+              <span class="profile-name" id="profileName">John Doe</span>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <!-- Hidden settings for profile -->
+    <div class="settings">
+      <input
+        type="file"
+        id="profilePictureInput"
+        class="profile-picture-input"
+        onchange="updateProfilePicture(event)"
+      />
+    </div>
+
+    <script>
+      function updateProfilePicture(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const profilePicture = document.getElementById("profilePicture");
+            profilePicture.style.backgroundImage = `url('${e.target.result}')`;
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    </script>
+  </body>
+</html>
